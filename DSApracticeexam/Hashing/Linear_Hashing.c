@@ -11,7 +11,8 @@ int linear(int key, int i)
 
 void linear_insert(int key) 
 {
-    int i = 0, index = -1;
+    int i = 0;
+    int index = -1;
     for (i = 0; i < SIZE; i++) 
     {
         index = linear(key, i);

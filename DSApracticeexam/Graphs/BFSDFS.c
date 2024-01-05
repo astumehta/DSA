@@ -1,14 +1,14 @@
 #include<stdio.h>
 // graph is of numbers ranging from 0 - 7
-int visited[8];
-
 
 int top = -1;
 int front = -1;
 int  rear = -1; 
 int queue[20]; 
 int stack[20];
-int a[8][8] = {
+int visited[8];
+int a[8][8] = 
+{
         {0, 1, 1, 1, 0, 0, 0, 0},
         {1, 0, 0, 0, 1, 0, 0, 1},
         {1, 0, 0, 0, 0, 0, 0, 0},
@@ -17,8 +17,11 @@ int a[8][8] = {
         {0, 0, 0, 1, 0, 0, 1, 0},
         {0, 0, 0, 0, 1, 1, 0, 1},
         {0, 1, 0, 0, 0, 0, 1, 0},
-    };
-      
+};
+
+
+
+
 // BFS (Queue)
 void enqueue(int val)
 {
@@ -59,6 +62,10 @@ void bfs(int root, int n)
     printf("\n");
 }
 
+
+
+
+
 // DFS (Stack)
 void push(int val)
 {
@@ -75,10 +82,11 @@ void dfs(int s, int n)
     push(s);
     visited[s] = 1;
     printf("%d ", s);
-
-    while (top != -1) {
+    while (top != -1) 
+    {
         int current = pop();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) 
+        {
             if (a[current][i] && !visited[i]) 
             {
                 push(i);
@@ -117,7 +125,8 @@ int main()
         scanf("%d", &ch);
         printf("Enter the root vertex: ");
         scanf("%d", &s);
-        switch (ch) {
+        switch (ch) 
+        {
             case 1:
                 bfs(s, n);
                 break;
@@ -127,7 +136,8 @@ int main()
         }
         printf("\nDo you want to continue (y/n)? ");
         scanf(" %c", &c); // Added space before %c to consume newline
-    } while ((c == 'y') || (c == 'Y'));
+        } 
+    while ((c == 'y') || (c == 'Y'));
 
     return 0;
 }
