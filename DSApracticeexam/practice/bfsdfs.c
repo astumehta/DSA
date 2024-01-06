@@ -65,35 +65,33 @@ void bfs(int root,int n)
         visited[i]=0;
     }
 }
-void dfs(int root,int n)
-{
+void dfs(int root, int n) {
+    int i, current;
+    for (i = 0; i < n; i++) {
+        visited[i] = 0;
+    }
     push(root);
-    printf("%d",root);
-    visited[root]=1;
-    while(top!=-1)
-    {
-        int current=pop();
-        visited[current]=1;
-        for(int i=0;i<n;i++)
+    while (top != -1) {
+        current = pop();
+        if (!visited[current]) 
         {
-            if(a[current][i] && !visited[i])
+            printf("%d", current);
+            visited[current] = 1;
+        }
+        for (i = n - 1; i >= 0; i--) 
+        {
+            if (a[current][i] && !visited[i]) 
             {
-                printf("%d",i);
-                visited[i]=1;
                 push(i);
             }
         }
     }
-    top=-1;
-    for(int i=0;i<n;i++)
-    {
-        visited[i]=0;
-    }
+
+    printf("\n");
 }
 void main()
 {
     int root;
-    
     printf("\nEnter root vertex: ");
     scanf("%d",&root);
     printf("\n1.BFS\n");
