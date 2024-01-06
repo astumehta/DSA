@@ -44,14 +44,14 @@ void create()
             }
                 
                 
-                if(parent->data>data)
-                {
-                    parent->left=newnode;
-                }
-                else
-                {
-                    parent->right=newnode;
-                }
+            if(parent->data>data)
+            {
+                parent->left=newnode;
+            }
+            else
+            {
+                parent->right=newnode;
+            }
         }
     }
 }

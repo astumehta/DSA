@@ -5,69 +5,45 @@
 int top = -1;
 char stack[50];
 
-void push(char x) 
-{
-    if (top == 49) 
-    {
+void push(char x) {
+    if (top == 49) {
         printf("Stack full");
-    } 
-    else 
-    {
+    } else {
         top++;
         stack[top] = x;
     }
 }
 
-char pop() 
-{
-    if (top == -1) 
-    {
+char pop() {
+    if (top == -1) {
         printf("Stack empty");
-    } 
-    else 
-    {
+    } else {
         char item = stack[top];
         top--;
         return item;
     }
 }
 
-int pri(char symbol) 
-{
-    if (symbol == '^') 
-    {
+int pri(char symbol) {
+    if (symbol == '^') {
         return (6);
-    } 
-    else if (symbol == '*' || symbol == '/') 
-    {
+    } else if (symbol == '*' || symbol == '/') {
         return (3);
-    } 
-    else if (symbol == '+' || symbol == '-') 
-    {
+    } else if (symbol == '+' || symbol == '-') {
         return (1);
-    }
-    else 
-    {
+    } else {
         return (0);
     }
 }
 
-int prs(char symbol) 
-{
-    if (symbol == '^') 
-    {
+int prs(char symbol) {
+    if (symbol == '^') {
         return (5);
-    } 
-    else if (symbol == '*' || symbol == '/') 
-    {
+    } else if (symbol == '*' || symbol == '/') {
         return (4);
-    } 
-    else if (symbol == '+' || symbol == '-') 
-    {
+    } else if (symbol == '+' || symbol == '-') {
         return (2);
-    }
-    else 
-    {
+    } else {
         return (0);
     }
 }
@@ -78,36 +54,20 @@ int main() {
     char postfix[50] = {'\0'}, infix[50];
 
     printf("Enter infix expression: ");
-    while ((ch = getchar()) != '\n') 
-    {
-        infix[i++] = ch;
-    }
-    
-    infix[i] = '\0';
-
-    i = 0;
+    scanf("%s", infix);
 
     while ((ch = infix[i]) != '\0') {
-        if (ch == '(') 
-        {
+        if (ch == '(') {
             push(ch);
-        } 
-        else if (isalnum(ch)) 
-        {
+        } else if (isalnum(ch)) {
             postfix[k++] = ch;
-        } 
-        else if (ch == ')') 
-        {
-            while (stack[top] != '(') 
-            {
+        } else if (ch == ')') {
+            while (stack[top] != '(') {
                 postfix[k++] = pop();
             }
             pop();
-        } 
-        else 
-        {
-            while (pri(ch) <= prs(stack[top]) && top >= 0) 
-            {
+        } else {
+            while (pri(ch) <= prs(stack[top]) && top >= 0) {
                 postfix[k++] = pop();
             }
             push(ch);
@@ -115,17 +75,13 @@ int main() {
         i++;
     }
 
-    while (top >= 0) 
-    {
+    while (top >= 0) {
         postfix[k++] = pop();
     }
 
     postfix[k] = '\0';
 
-    
-    for (i = 0; i < k; i++) {
-        printf("%c", postfix[i]);
-    }
+    printf("Postfix expression: %s\n", postfix);
 
     return 0;
 }

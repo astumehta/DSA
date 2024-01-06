@@ -21,10 +21,10 @@ void insert(struct node *HashTable[], int val)
         HashTable[index]->next = NULL;
     }
     else{
-        struct node *trail,*temp,*nn;
-        nn = (struct node *)malloc(sizeof(struct node));
-        nn->data = val;
-        nn->next = NULL;
+        struct node *trail,*temp,*newnode;
+        newnode = (struct node *)malloc(sizeof(struct node));
+        newnode->data = val;
+        newnode->next = NULL;
         temp = HashTable[index];
         while (temp!=NULL&&temp->data<val)
         {
@@ -33,11 +33,11 @@ void insert(struct node *HashTable[], int val)
         }
         if (temp==NULL)
         {
-            trail->next = nn;
+            trail->next = newnode;
         }
         else{
-            nn->next = temp;
-            trail->next = nn;
+            newnode->next = temp;
+            trail->next = newnode;
         }        
     }
 }

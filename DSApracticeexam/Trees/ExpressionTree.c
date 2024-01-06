@@ -12,15 +12,16 @@ char postfix[100];
 struct node *stack1[10];
 int top1 = -1;
 
-void push1(struct node *newnode){
+void push1(struct node *newnode)
+{
     if(root==NULL)
     root = newnode;
     top1++;
-    stack1[top1] = newnode;
-    
+    stack1[top1] = newnode; 
 }
 
-struct node *pop1(){
+struct node *pop1()
+{
     struct node *temp;
     if(top1 == -1){
         root = NULL;

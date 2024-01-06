@@ -33,11 +33,11 @@ void binarySearch(int low,int high,int num)
         }
         else if(a[mid]>num)
         {
-            binarySearch(low,mid,num);
+            binarySearch(low,mid-1,num);
         }
         else if(a[mid]<num)
         {
-            binarySearch(mid,high,num);
+            binarySearch(mid+1,high,num);
         }
         else
         {
@@ -63,12 +63,14 @@ int fibonacci(int a[],int x)
     int fib0=0;
     int fib1=1;
     int fib2=fib0+fib1;
+    
     while(fib2<x)
     {
         fib0=fib1;
         fib1=fib2;
         fib2=fib0+fib1;
     }
+    
     int offset=-1;
     while(fib2>1)
     {

@@ -7,53 +7,65 @@ struct Node{
     struct Node * next;
 }*start=NULL;
 
-struct Node *insert(struct Node * start){
-    struct Node *ptr,*p;
+struct Node *insert(struct Node * start)
+{
+    struct Node *newnode,*temp;
     int val,pri;
-    ptr=(struct Node *)malloc(sizeof(struct Node)); 
+    newnode=(struct Node *)malloc(sizeof(struct Node)); 
     printf("enter the value to be inserted and its priority");
     scanf("%d %d",&val,&pri);
-    ptr->data=val;
-    ptr->priority=pri;
-    if(start==NULL || pri<start->priority){
-        ptr->next=start;
-        start=ptr;
+    newnode->data=val;
+    newnode->priority=pri;
+    if(start==NULL || pri<start->priority)
+    {
+        newnode->next=start;
+        start=newnode;
     }
-    else{
-        p=start;
-        while(p->next!=NULL && p->next->priority<=pri){
-            p=p->next;
+    else
+    
+    {
+        temp=start;
+        while(temp->next!=NULL && temp->next->priority<=pri)
+        {
+            temp=temp->next;
         }
-        ptr->next=p->next;
-        p->next=ptr;
+        newnode->next=temp->next;
+        temp->next=newnode;
     }
     return start;
 }
 
-struct Node *delete(struct Node *start){
-    struct Node *ptr;
-    if(start==NULL){
+struct Node *delete(struct Node *start)
+{
+    struct Node *newnode;
+    if(start==NULL)
+    {
         printf("empty");
     }
-    else{
-        ptr=start;
-        printf("deleted element: %d",ptr->data);
+    else
+    {
+        newnode=start;
+        printf("deleted element: %d",newnode->data);
         start=start->next;
-        free(ptr);
+        free(newnode);
     }
     return start;
 }
 
-void display(struct Node *start){
-    struct Node *ptr;
-    if(start==NULL){
+void display(struct Node *start)
+{
+    struct Node *newnode;
+    if(start==NULL)
+    {
         printf("empty");
     }
-    else{
-        ptr=start;
-        while(ptr!=NULL){
-            printf("%d\t[priority=%d]",ptr->data, ptr->priority);
-            ptr=ptr->next;
+    else
+    {
+        newnode=start;
+        while(newnode!=NULL)
+        {
+            printf("%d\t[priority=%d]",newnode->data, newnode->priority);
+            newnode=newnode->next;
         }
     }
 }

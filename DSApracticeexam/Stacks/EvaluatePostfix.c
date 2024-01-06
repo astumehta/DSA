@@ -40,8 +40,8 @@ int main() {
 
     for (int i = 0; postfix[i] != '\0'; i++)
      {
+        
         int x = postfix[i];
-
         if (isdigit(x)) 
         {
             push(x - '0');

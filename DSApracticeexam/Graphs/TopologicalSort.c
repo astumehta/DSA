@@ -8,8 +8,10 @@
 */
 #include <conio.h>
 #include <stdio.h>
-int indegree[5], visited[5] = {0};
-int a[5][5] = {
+int indegree[5];
+int visited[5] = {0};
+int a[5][5] = 
+{
     {0, 0, 0, 0, 0},
     {1, 0, 0, 0, 0},
     {0, 1, 0, 1, 0},
@@ -24,18 +26,22 @@ void indeg()
     {
         count = 0;
         for (j = 0; j < 5; j++)
-            count += a[i][j];
-
+        {
+            count=count+ a[i][j];
+        }
         indegree[i] = count;
     }
 }
 
 int min()
 {
-    int i, min = 100, minVal = 100;
+    int i;
+    int min = 100;
+    int minVal = 100;
     for (i = 0; i < 5; i++)
     {
-        if (visited[i]==0 && minVal > indegree[i]){
+        if (visited[i]==0 && minVal > indegree[i])
+        {
             minVal = indegree[i];
             min = i;
         }
@@ -47,14 +53,17 @@ void topological_sort()
 {
     int i = min();
     if (i == 100)
+    {
         return;
-    else {
+    }
+    else 
+    {
         printf("%d ", i + 1);
         visited[i] = 1;
         for (int j = 0; j < 5; j++)
         {
-            // Check columns and not rows
-            if (a[j][i]){
+            if (a[j][i])
+            {
                 --indegree[j];
             }    
         }

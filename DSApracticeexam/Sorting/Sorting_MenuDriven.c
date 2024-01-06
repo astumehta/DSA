@@ -25,7 +25,7 @@ void bubbleSort()
 void insertionSort()
 {
     int temp;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < n; i++)
     {
         temp=a[i];
         int j=i-1;
@@ -75,7 +75,7 @@ void quick_Sort(int low,int high)
 int partition(int low,int high)
 {
     int pivot=a[low];
-    int start=low+1;
+    int start=low;
     int end=high;
     while(start<end)
     {
