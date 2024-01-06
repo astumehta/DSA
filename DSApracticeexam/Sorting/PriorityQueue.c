@@ -1,97 +1,84 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
-struct node
-{
+#include<stdio.h>
+#include<malloc.h>
+
+struct Node{
     int data;
     int priority;
-    struct node *next;
-} *start = NULL;
+    struct Node * next;
+}*start=NULL;
 
-struct node *insert(struct node *start)
-{
-    int val, pri;
-    struct node *newnode, *temp;
-    newnode = (struct node *)malloc(sizeof(struct node));
-    printf("\n Enter the value and its priority : ");
-    scanf("%d %d", &val, &pri);
-    newnode->data = val;
-    newnode->priority = pri;
-    if (start == NULL || pri < start->priority)
-    {
-        newnode->next = start;
-        start = newnode;
+struct Node *insert(struct Node * start){
+    struct Node *ptr,*p;
+    int val,pri;
+    ptr=(struct Node *)malloc(sizeof(struct Node)); 
+    printf("enter the value to be inserted and its priority");
+    scanf("%d %d",&val,&pri);
+    ptr->data=val;
+    ptr->priority=pri;
+    if(start==NULL || pri<start->priority){
+        ptr->next=start;
+        start=ptr;
     }
-    else
-    {
-        temp = start;
-        while (temp->next != NULL && temp->next->priority <= pri)
-        {
-            temp = temp->next;
-            newnode->next = temp->next;
-            temp->next = newnode;
+    else{
+        p=start;
+        while(p->next!=NULL && p->next->priority<=pri){
+            p=p->next;
         }
+        ptr->next=p->next;
+        p->next=ptr;
     }
     return start;
 }
-struct node *delete(struct node *start)
-{
-    struct node *temp;
-    if (start == NULL)
-    {
-        printf("\n UNDERFLOW");
-        return;
+
+struct Node *delete(struct Node *start){
+    struct Node *ptr;
+    if(start==NULL){
+        printf("empty");
     }
-    else
-    {
-        temp = start;
-        printf("\n Deleted item is: %d", temp->data);
-        start = start->next;
-        free(temp);
+    else{
+        ptr=start;
+        printf("deleted element: %d",ptr->data);
+        start=start->next;
+        free(ptr);
     }
     return start;
 }
-void display(struct node *start)
-{
-    struct node *temp;
-    temp = start;
-    if (start == NULL)
-    {
-        printf("\nQUEUE IS EMPTY");
+
+void display(struct Node *start){
+    struct Node *ptr;
+    if(start==NULL){
+        printf("empty");
     }
-    else
-    {
-        printf("\n PRIORITY QUEUE IS : ");
-        while (temp != NULL)
-        {
-            printf("\t%d[priority=%d]", temp->data, temp->priority);
-            temp = temp->next;
+    else{
+        ptr=start;
+        while(ptr!=NULL){
+            printf("%d\t[priority=%d]",ptr->data, ptr->priority);
+            ptr=ptr->next;
         }
     }
 }
-void main()
-{
-    int option;
-    while (1)
-    {
-        printf("\n MENU");
-        printf("\n 1. INSERT");
-        printf("\n 2. DELETE");
-        printf("\n 3. DISPLAY");
-        printf("\n 4. EXIT");
-        printf("\n Enter your option : ");
-        scanf("%d", &option);
-        switch (option)
-        {
+
+void main(){
+    int ch;
+    do{
+    printf("MENU");
+    printf("1.Insert");
+    printf("2.Delete");
+    printf("3>display");
+    printf("4.Exit");
+    printf("choice:");
+    scanf("%d",&ch);
+
+    switch(ch){
         case 1:
-            start = insert(start);
-            break;
+        start=insert(start);
+        break;
         case 2:
-            start = delete (start);
-            break;
+        start=delete(start);
+        break;
         case 3:
-            display(start);
-            break;
-        }
+        display(start);
+        break;
     }
+    }while(ch!=4);
 }
