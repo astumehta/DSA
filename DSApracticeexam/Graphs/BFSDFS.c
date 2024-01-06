@@ -77,27 +77,28 @@ int pop()
     return stack[top--];
 }
 
-void dfs(int s, int n) 
-{
-    push(s);
-    visited[s] = 1;
-    printf("%d ", s);
-    while (top != -1) 
-    {
-        int current = pop();
-        for (int i = 0; i < n; i++) 
+void dfs(int root, int n) {
+    int i, current;
+    for (i = 0; i < n; i++) {
+        visited[i] = 0;
+    }
+    push(root);
+    while (top != -1) {
+        current = pop();
+        if (!visited[current]) 
+        {
+            printf("%d", current);
+            visited[current] = 1;
+        }
+        for (i = n - 1; i >= 0; i--) 
         {
             if (a[current][i] && !visited[i]) 
             {
                 push(i);
-                visited[i] = 1;
-                printf("%d ", i);
             }
         }
     }
-    top = -1;
-    for(int i = 0; i < n; i++)
-        visited[i] = 0;
+
     printf("\n");
 }
 

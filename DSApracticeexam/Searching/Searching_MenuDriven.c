@@ -70,7 +70,7 @@ int fibonacci(int a[],int x)
         fib1=fib2;
         fib2=fib0+fib1;
     }
-    
+
     int offset=-1;
     while(fib2>1)
     {
@@ -90,13 +90,14 @@ int fibonacci(int a[],int x)
         }
         else return i;
     }
-
-
     if(a[offset+1]==data)
     {
         return offset+1;
     }
+    else
+    {
     return -1;
+    }
 }
 
 

@@ -1,9 +1,10 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<ctype.h>
-#include<malloc.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <malloc.h>
 
-struct node{
+struct node
+{
     char ch;
     struct node *left, *right;
 } *root;
@@ -14,80 +15,89 @@ int top1 = -1;
 
 void push1(struct node *newnode)
 {
-    if(root==NULL)
-    root = newnode;
+    if (root == NULL)
+    {
+        root = newnode;
+    }
     top1++;
-    stack1[top1] = newnode; 
+    stack1[top1] = newnode;
 }
 
 struct node *pop1()
 {
     struct node *temp;
-    if(top1 == -1){
+    if (top1 == -1)
+    {
         root = NULL;
         temp = NULL;
     }
-    else {
+    else
+    {
         temp = stack1[top1];
         top1--;
     }
-        return temp;
+    return temp;
 }
 
-
-void create(char x){
+void create(char x)
+{
     struct node *newnode;
     newnode = (struct node *)malloc(sizeof(struct node));
-    newnode -> ch = x;
-    newnode -> left = newnode -> right = NULL;
+    newnode->ch = x;
+    newnode->left = newnode->right = NULL;
     push1(newnode);
     root = newnode;
 }
 
-void createNode(char x){
+void createNode(char x)
+{
 
     struct node *newnode, *temp;
     newnode = (struct node *)malloc(sizeof(struct node));
-    newnode -> ch = x;
+    newnode->ch = x;
     temp = pop1();
-    newnode -> right = temp;
+    newnode->right = temp;
     temp = pop1();
-    newnode -> left = temp;
+    newnode->left = temp;
     push1(newnode);
     root = newnode;
-
 }
 
-void expression_tree() {
+void expression_tree()
+{
     int i = 0;
     char x;
 
-    while(postfix[i] != '\0'){
+    while (postfix[i] != '\0')
+    {
         x = postfix[i];
-        if(isalnum(x))
+        if (isalnum(x))
             create(x);
-        
-        else if(x == '+' || x == '-' || x == '*' || x == '/' || x == '%')
+
+        else if (x == '+' || x == '-' || x == '*' || x == '/' || x == '%')
             createNode(x);
 
-        else {
+        else
+        {
             printf("Expression incorrect");
             break;
         }
         i++;
-    }    
-}
-
-void inorder(struct node *temp){
-    if (temp!=NULL) {
-        inorder(temp -> left);
-        printf("%c ", temp -> ch);
-        inorder(temp -> right);
     }
 }
 
+void inorder(struct node *temp)
+{
+    if (temp != NULL)
+    {
+        inorder(temp->left);
+        printf("%c ", temp->ch);
+        inorder(temp->right);
+    }
+}
 
-int main(){
+int main()
+{
     printf("Enter the Postfix expression:\n");
     scanf("%s", postfix);
     expression_tree();

@@ -8,14 +8,14 @@ struct Node {
 
 void push(int data) 
 {
-    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
-    if (newNode == NULL) 
+    struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
+    if (newnode == NULL) 
     {
         exit(1);
     }
-    newNode->data = data;
-    newNode->next = start;
-    start = newNode;
+    newnode->data = data;
+    newnode->next = start;
+    start = newnode;
 }
 
 void pop() 
