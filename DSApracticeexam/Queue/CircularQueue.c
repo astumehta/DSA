@@ -7,7 +7,7 @@ int rear = -1;
 int queue[size];
 
 
-void enqueue(int x)
+void enqueue(int data)
 {
     if((rear+1)%size==front)
     {
@@ -17,12 +17,12 @@ void enqueue(int x)
     {
         front=0;
         rear=0;
-        queue[rear]=x;
+        queue[rear]=data;
     }
     else
     {
         rear=(rear+1)%size;
-        queue[rear]=x;
+        queue[rear]=data;
     }
 }
 

@@ -1,12 +1,32 @@
 #include <stdio.h>
-#define SIZE 5
+#define size 5
 
-int queue[SIZE];
+int queue[size];
 int front = -1, rear = -1;
+
+void enqueueUsingRear(int val) 
+{
+	if (front == (rear + 1) % size) 
+    {
+		printf("Queue full!");
+	}
+	else 
+    {
+		if (front == -1)
+        {
+			front++;
+        }
+		else
+		{
+		rear = (rear + 1) % size;
+		queue[rear] = val;
+		}
+	}
+}
 
 void enqueueUsingFront(int val) 
 {
-	if (front == (rear + 1) % SIZE) 
+	if (front == (rear + 1) % size) 
     {
 		printf("Queue full!");
 	}
@@ -19,30 +39,12 @@ void enqueueUsingFront(int val)
 		}
 		else
 		{
-            front = (front + SIZE - 1) % SIZE;
+            front = (front + size - 1) % size;
         }
 		queue[front] = val;
 	}
 }
-void enqueueUsingRear(int val) 
-{
-	if (front == (rear + 1) % SIZE) 
-    {
-		printf("Queue full!");
-	}
-	else 
-    {
-		if (front == -1)
-        {
-			front++;
-        }
-		else
-		{
-		rear = (rear + 1) % SIZE;
-		queue[rear] = val;
-		}
-	}
-}
+
 int dequeueUsingFront() 
 {
 	int x = -1;
@@ -60,7 +62,7 @@ int dequeueUsingFront()
 		}
 		else
 		{	
-            front = (front + 1) % SIZE;
+            front = (front + 1) % size;
         }
 	}
 	return x;
@@ -81,7 +83,7 @@ int dequeueUsingRear()
 			rear = -1;
 		}
 		else
-			rear = (rear + SIZE - 1) % SIZE;
+			rear = (rear + size - 1) % size;
 	}
 	return x;
 }
@@ -93,7 +95,7 @@ void display()
 	while (i != rear) 
     {
 		printf("%d ", queue[i]);
-		i = (i + 1) % SIZE;
+		i = (i + 1) % size;
 	}
 	printf("%d\n", queue[rear]);
 }

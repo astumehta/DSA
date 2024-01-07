@@ -74,33 +74,34 @@ void add()
             temp2=temp2->next;
             link(c,p);
         }
-        else{
+        else
+        {
             c=temp1->coeff+temp2->coeff;
             p=temp1->pow;
             temp1=temp1->next;
             temp2=temp2->next;
             link(c,p);
         }
-    if(temp1==NULL)
-    {
-        while(temp2!=NULL)
+        if(temp1==NULL)
         {
-            c=temp2->coeff;
-            p=temp2->pow;
-            temp2=temp2->next;
-            link(c,p);
+            while(temp2!=NULL)
+            {
+                c=temp2->coeff;
+                p=temp2->pow;
+                temp2=temp2->next;
+                link(c,p);
+            }
         }
-    }
-    if(temp2==NULL)
-    {
-        while(temp1!=NULL)
+        if(temp2==NULL)
         {
-            c=temp1->coeff;
-            p=temp1->pow;
-            temp1=temp1->next;
-            link(c,p);
+            while(temp1!=NULL)
+            {
+                c=temp1->coeff;
+                p=temp1->pow;
+                temp1=temp1->next;
+                link(c,p);
+            }
         }
-    }
 }
 }
 void display(struct node *start)

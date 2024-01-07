@@ -64,7 +64,7 @@ void display(struct Node *start)
         newnode=start;
         while(newnode!=NULL)
         {
-            printf("%d\t[priority=%d]",newnode->data, newnode->priority);
+            printf("\n%d\t[priority=%d]\n",newnode->data, newnode->priority);
             newnode=newnode->next;
         }
     }
@@ -73,12 +73,12 @@ void display(struct Node *start)
 void main(){
     int ch;
     do{
-    printf("MENU");
-    printf("1.Insert");
-    printf("2.Delete");
-    printf("3>display");
-    printf("4.Exit");
-    printf("choice:");
+    printf("\nMENU");
+    printf("\n1.Insert");
+    printf("\n2.Delete");
+    printf("\n3.Display");
+    printf("\n4.Exit");
+    printf("\nChoice: ");
     scanf("%d",&ch);
 
     switch(ch){

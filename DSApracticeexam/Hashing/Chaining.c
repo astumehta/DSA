@@ -5,41 +5,55 @@ struct node{
     struct node *next;
 }*HashTable[10];
 
-int hash(int val)
-{
-    return val%10;
-}
 
 void insert(struct node *HashTable[], int val)
 {
-    int index = 0;
-    index = hash(val);
+    
+    int index = val%10;
     if (HashTable[index]==0)
     {
         HashTable[index] = (struct node *)malloc(sizeof(struct node));
         HashTable[index]->data = val;
         HashTable[index]->next = NULL;
     }
-    else{
-        struct node *trail,*temp,*newnode;
+    else
+    {
+        struct node *pre,*temp,*newnode;
         newnode = (struct node *)malloc(sizeof(struct node));
         newnode->data = val;
         newnode->next = NULL;
+        
         temp = HashTable[index];
         while (temp!=NULL&&temp->data<val)
         {
-            trail = temp;
+            pre = temp;
             temp = temp->next;
         }
         if (temp==NULL)
         {
-            trail->next = newnode;
+            pre->next = newnode;
         }
-        else{
+        else
+        {
             newnode->next = temp;
-            trail->next = newnode;
+            pre->next = newnode;
         }        
     }
+}
+void search(int val) 
+{
+    int index = val%10;
+    struct Node *temp = HashTable[index];
+    while (temp != NULL) 
+    {
+        if (temp->data == val) 
+        {
+            printf("Value %d found at index %d\n", val, index);
+            return;
+        }
+        temp = temp->next;
+    }
+    printf("Value %d not found\n", val);
 }
 void display(struct node *HashTable[])
 {

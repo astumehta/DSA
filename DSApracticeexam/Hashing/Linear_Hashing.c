@@ -1,89 +1,81 @@
-#include <stdio.hashtable>
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#define SIZE 10
+#define size 10
 
-int hashtable[SIZE] = {0};
+int hashtable[size]={0};
 
-int linear(int key, int i) 
+void insert()
 {
-    return ((key + i) % SIZE);
-}
-
-void linear_insert(int key) 
-{
-    int i = 0;
-    int index = -1;
-    for (i = 0; i < SIZE; i++) 
-    {
-        index = linear(key, i);
-        if (hashtable[index] == 0) 
-        {
-            hashtable[index] = key;
-            printf("Value %d inserted at index %d\n", key, index);
-            return;
-        }
-    }
-    if (i == SIZE) 
-    {
-        printf("Hash is full, value could not be inserted\n");
-    }
-}
-
-void linear_search(int key) 
-{
-    int i = 0, index = -1;
-    for (i = 0; i < SIZE; i++) 
-    {
-        index = linear(key, i);
-        if (hashtable[index] == key) 
-        {
-            printf("Value %d found at index %d\n", key, index);
-            return;
-        }
-    }
-    if (i == SIZE) 
-    {
-        printf("Value not found.\n");
-    }
-}
-
-void display() {
+    int data;
     int i;
-    printf("\nElements are \n");
-    for (i = 0; i < SIZE; i++) {
-        printf("\nIndex %d value = %d", i, hashtable[i]);
+    printf("Enter data to insert: ");
+    scanf("%d",&data);
+    int hkey=data%size;
+    for(i=0;i<size;i++)
+    {
+        int index=(hkey+i)%size;
+        if(hashtable[index]==0)
+        {
+            hashtable[index]=data;
+            printf("Value %d inserted at index %d",data,index);
+            break;
+        }
     }
-    printf("\n");
+    if(i==size)
+    {
+        printf("Hash Full");
+    }
 }
-
-int main() {
-    int key;
-
-    while (1) {
-        printf("\n1. Linear Hash - Insert\n2. Linear Hash - Search\n3. Display\n4. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &key);
-
-        switch (key) {
+void search()
+{
+    int data;
+    int i;
+    printf("Enter data to search: ");
+    scanf("%d",&data);
+    int hkey=data%size;
+    for(i=0;i<size;i++)
+    {
+        int index=(hkey+i)%size;
+        if(hashtable[index]==data)
+        {
+            printf("Value found at index %d",index);
+            return;
+        }
+    }
+    if(i==size)
+    {
+        printf("Value not found");
+    }
+}
+void display()
+{
+    for(int i=0;i<size;i++)
+    {
+        printf("\nValue %d at index %d\n",hashtable[i],i);
+    }
+}
+void main()
+{
+    int ch;
+    while(1)
+    {
+        printf("\n1.Insert\n2.Search\n3.Display\n4.Exit");
+        scanf("%d",&ch);
+        switch(ch)
+        {
             case 1:
-                printf("Enter value: ");
-                scanf("%d", &key);
-                linear_insert(key);
+                insert();
                 break;
             case 2:
-                printf("Enter value to search: ");
-                scanf("%d", &key);
-                linear_search(key);
+                search();
                 break;
             case 3:
                 display();
                 break;
             case 4:
-                return 0;
-            default:
-                printf("Invalid choice, try again\n");
+                exit(0);
         }
     }
-
-    return 0;
 }

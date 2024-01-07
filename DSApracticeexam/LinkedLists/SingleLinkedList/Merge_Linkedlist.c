@@ -8,11 +8,17 @@ struct node
     int data;
 } *start1 = NULL, *start2 = NULL;
 
+void createnode1();
+void createnode2();
+void merge();
+void display();
+
 int main()
 {
     createnode1();
     createnode2();
     merge();
+    display();  // Display the merged list
     return 0;
 }
 
@@ -83,9 +89,12 @@ void merge()
     {
         temp->next = start2;
     }
+}
 
+void display()
+{
     printf("\nMerged list: ");
-    temp = start1;
+    struct node *temp = start1;
     while (temp != NULL)
     {
         printf("%d, ", temp->data);

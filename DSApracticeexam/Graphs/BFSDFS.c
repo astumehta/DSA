@@ -62,10 +62,6 @@ void bfs(int root, int n)
     printf("\n");
 }
 
-
-
-
-
 // DFS (Stack)
 void push(int val)
 {
@@ -77,29 +73,28 @@ int pop()
     return stack[top--];
 }
 
-void dfs(int root, int n) {
-    int i, current;
-    for (i = 0; i < n; i++) {
-        visited[i] = 0;
-    }
+void dfs(int root, int n)
+{
+    int i;
     push(root);
-    while (top != -1) {
-        current = pop();
-        if (!visited[current]) 
+    printf("%d ", root);
+    visited[root] = 1;
+    while(top != -1)
+    {
+        int current = pop();
+        if(!visited[current])
         {
-            printf("%d", current);
-            visited[current] = 1;
+            printf("%d ", current);
         }
-        for (i = n - 1; i >= 0; i--) 
+        visited[current] = 1;
+        for(i = 0; i < n; i++)
         {
-            if (a[current][i] && !visited[i]) 
+            if(a[current][i] && !visited[i])
             {
                 push(i);
             }
         }
     }
-
-    printf("\n");
 }
 
 int main() 

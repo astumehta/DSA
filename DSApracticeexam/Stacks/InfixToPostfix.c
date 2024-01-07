@@ -26,27 +26,28 @@ char pop() {
 
 int pri(char symbol) {
     if (symbol == '^') {
-        return (6);
-    } else if (symbol == '*' || symbol == '/') {
-        return (3);
+        return 6;
+    } else if (symbol == '*' || symbol == '/' || symbol == '%') {
+        return 3;
     } else if (symbol == '+' || symbol == '-') {
-        return (1);
+        return 1;
     } else {
-        return (0);
+        return 0;
     }
 }
 
 int prs(char symbol) {
     if (symbol == '^') {
-        return (5);
-    } else if (symbol == '*' || symbol == '/') {
-        return (4);
+        return 5;
+    } else if (symbol == '*' || symbol == '/' || symbol == '%') {
+        return 4;
     } else if (symbol == '+' || symbol == '-') {
-        return (2);
+        return 2;
     } else {
-        return (0);
+        return 0;
     }
 }
+
 
 int main() {
     int i = 0, k = 0;
@@ -56,17 +57,21 @@ int main() {
     printf("Enter infix expression: ");
     scanf("%s", infix);
 
-    while ((ch = infix[i]) != '\0') {
+    while ((ch = infix[i]) != '\0') 
+    {
         if (ch == '(') {
             push(ch);
-        } else if (isalnum(ch)) {
+        } 
+        else if (isalnum(ch)) {
             postfix[k++] = ch;
-        } else if (ch == ')') {
+        } 
+        else if (ch == ')') {
             while (stack[top] != '(') {
                 postfix[k++] = pop();
             }
             pop();
-        } else {
+        } 
+        else {
             while (pri(ch) <= prs(stack[top]) && top >= 0) {
                 postfix[k++] = pop();
             }
@@ -75,7 +80,8 @@ int main() {
         i++;
     }
 
-    while (top >= 0) {
+    while (top >= 0) 
+    {
         postfix[k++] = pop();
     }
 

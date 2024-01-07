@@ -15,7 +15,6 @@ void enqueue(int data)
     }
     newNode->data = data;
     newNode->next = NULL;
-
     if (rear == NULL) 
     {
         front = newNode;
@@ -47,7 +46,8 @@ void dequeue()
     }
 }
 
-void display() {
+void display() 
+{
     if (front == NULL)
     {
         printf("Queue is empty\n");

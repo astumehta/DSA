@@ -6,13 +6,13 @@ int h[SIZE] = {0};
 
 void double_insert()
 {
-    int key,size2=8,data,index=0,i;
+    int hkey,size2=8,data,index=0,i;
     printf("Enter data: ");
     scanf("%d", &data);
-    key=(data%SIZE);
+    hkey=(data%SIZE);
     for (i = 0; i < SIZE; i++)
     {
-        index = (key+(i*(data%size2)))%SIZE;
+        index = (hkey+(i*(data%size2)))%SIZE;
         if (h[index] == 0)
         {
             h[index] = data;
@@ -28,13 +28,13 @@ void double_insert()
 
 void double_search()
 {
-    int key,size2=8,data,index=0,i;
+    int hkey,size2=8,data,index=0,i;
     printf("Enter data: ");
     scanf("%d", &data);
-    key=(data%SIZE);
+    hkey=(data%SIZE);
     for (i = 0; i < SIZE; i++)
     {
-        index = (key+(i*(data%size2)))%SIZE;
+        index = (hkey+(i*(data%size2)))%SIZE;
         if (h[index] == data)
         {
             printf("Data Found");

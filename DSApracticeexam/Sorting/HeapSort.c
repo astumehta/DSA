@@ -16,31 +16,27 @@ void heapify(int arr[], int n, int i)
         largest = right;
     }
 
-    if (largest != i) {
-        // Swap arr[i] and arr[largest]
+    if (largest != i) 
+    {
         int temp = arr[i];
         arr[i] = arr[largest];
         arr[largest] = temp;
-
-        // Recursively heapify the affected subtree
         heapify(arr, n, largest);
     }
 }
 
-void heapSort(int arr[], int n) {
-    // Build a max heap
-    for (int i = n / 2 - 1; i >= 0; i--) {
+void heapSort(int arr[], int n) 
+{
+    for (int i = n / 2 - 1; i >= 0; i--) 
+    {
         heapify(arr, n, i);
     }
 
-    // Extract elements from the heap one by one
-    for (int i = n - 1; i > 0; i--) {
-        // Swap the root (maximum element) with the last element
+    for (int i = n - 1; i > 0; i--) 
+    {    
         int temp = arr[0];
         arr[0] = arr[i];
         arr[i] = temp;
-
-        // Heapify the reduced heap
         heapify(arr, i, 0);
     }
 }
